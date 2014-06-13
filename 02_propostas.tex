@@ -1,0 +1,51 @@
+%%******************************************************************************
+%%
+%% introduction.tex
+%%
+%%******************************************************************************
+%%
+%% Title......: Introduction
+%%
+%% Author.....: GSCAR-DFKI
+%%
+%% Started....: Nov 2013
+%%
+%% Emails.....: alcantara@poli.ufrj.br elael@poli.ufrj renan028@gmail.com
+%%
+%% Address....: Universidade Federal do Rio de Janeiro
+%%              Caixa Postal 68.504, CEP: 21.945-970
+%%              Rio de Janeiro, RJ - Brasil.
+%%
+%%******************************************************************************
+
+
+%%******************************************************************************
+%% SECTION - Eletronica
+%%******************************************************************************
+
+\section{Propostas de soluções para a arquitetura da eletrônica do Projeto ROSA}
+
+Foram desenvolvidas três soluções para a arquitetura da eletrônica, que podem
+ser classificadas quanto à simplicidade, custo e rapidez de execução.
+
+A primeira solução consiste em projetar uma placa que pudesse realizar o
+controle da alimentação dos dispositivos da eletrônica, monitoramento elétrico
+de corrente e voltagem, e gerenciar os dispositivos, com todas as interfaces de
+comunicação do sistema. O processamento do sonar será realizado por um PC na
+base. Os componentes da eletrônica necessários para a proposta são de baixo
+custo, porém há complexidade de software e eletrônica em relação às outras
+soluções, o que impacta em uma maior demora da solução.
+
+A segunda proposta incide na utilização de um PC embarcado para o processamento
+de sinal e gerenciamento de todas as interfaces necessárias para o gerenciamento
+dos dispositivos. O PC embarcado se comunica com a base por Ethernet, onde
+haverá um roteador para estabelecer a comunicação com o Tablet.
+Esta solução necessita de um PC104 embarcado, com proteção mecânica desenvolvida
+pela equipe, ou uma eletrônica importada protegida. Do ponto de vista da
+eletrônica, a solução tem com PC104 apresenta custo intermediário, é simples e
+de baixo tempo de execução, porém há a complexidade mecânica. Por outro lado, a
+eletrônica importada é de alto custo, mas aproxima-se mais de um produto final.
+
+A terceira proposta é a utilização de dois PCs, de forma que haja processamento
+tanto na eletrônica embarcada, quanto na base. O custo desta solução é alto,
+porém apresenta grande simplicidade e rápido tempo de execução.

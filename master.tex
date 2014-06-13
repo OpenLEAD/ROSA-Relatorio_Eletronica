@@ -1,0 +1,124 @@
+%%******************************************************************************
+%%
+%% master.tex
+%%
+%%******************************************************************************
+%%
+%% Title......: ROSA - Robô para Operação de Stoplog Alagados
+%% 
+%% Author.....: GSCAR-CIR
+%%
+%% Started....: Nov 2013
+%%
+%% Emails.....: renan028@gmail.com
+%%
+%% Address....: Universidade Federal do Rio de Janeiro
+%%              Caixa Postal 68.504, CEP: 21.945-970
+%%              Rio de Janeiro, RJ - Brasil.
+%%
+%%******************************************************************************
+
+
+%%******************************************************************************
+%% CONFIGURATION
+%%******************************************************************************
+
+
+\documentclass[a4paper,11pt,oneside,brazilian,
+draft=false]{article}%openany,version=last
+
+
+
+
+%%******************************************************************************
+%% DOCUMENT STYLE
+%%******************************************************************************
+
+
+\usepackage{float}
+\usepackage{rotating}
+\usepackage{graphicx}
+\usepackage{mybook}
+\usepackage{fancyhdr}
+\usepackage{pdflscape}
+\usepackage{pdfpages}
+\usepackage[toc,page]{appendix}
+
+\pdfcompresslevel = 9
+\oddsidemargin = 31pt
+\topmargin = 20pt
+\headheight = 12pt
+\headsep = 25pt
+\textheight = 592pt
+\textwidth = 390pt
+\marginparsep = 10pt
+\marginparwidth = 35pt
+\footskip = 30pt
+
+%%******************************************************************************
+%% MAIN BODY
+%%******************************************************************************
+
+\begin{document} 
+
+%%==============================================================================
+%% FRONT MATTER
+%%==============================================================================
+
+%\frontmatter
+
+\include{01_frontpage}
+\include{01_header}
+
+
+
+%%==============================================================================
+%% SUMMARY
+%%==============================================================================
+
+%\tableofcontents
+
+
+%%==============================================================================
+%% LIST OF TABLES, FIGURES, AND LISTINGS
+%%==============================================================================
+
+%\listoffigures
+%\listoftables
+%
+%\lstlistoflistings
+
+
+%%==============================================================================
+%% MAIN MATTER
+%%==============================================================================
+
+%\mainmatter
+
+\tableofcontents
+\listoffigures
+\include{02_propostas}
+\include{03_proposta1}
+\include{04_proposta2}
+\include{05_proposta3}
+\include{06_conclusao}
+\include{07_anexo}
+
+
+%%==============================================================================
+%% APPENDIX - Team
+%%==============================================================================
+
+%\appendix
+
+
+
+
+%%==============================================================================
+%% BACK MATTER - Bibliography and Signature
+%%==============================================================================
+
+%\backmatter
+
+\end{document}
+

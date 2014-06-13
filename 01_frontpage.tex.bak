@@ -1,0 +1,152 @@
+%%******************************************************************************
+%%
+%% frontpage.tex
+%%
+%%******************************************************************************
+%%
+%% Title......: ROSA - Stoplog Inspection
+%%
+%% Author.....: GSCAR-DFKI
+%%
+%% Started....: Nov 2013
+%%
+%% Emails.....: renan028@gmail.com
+%%
+%% Address....: Universidade Federal do Rio de Janeiro
+%%              Caixa Postal 68.504, CEP: 21.945-970
+%%              Rio de Janeiro, RJ - Brasil.
+%%
+%%******************************************************************************
+
+
+%%******************************************************************************
+%% FRONT PAGE
+%%******************************************************************************
+
+%%==============================================================================
+%% HEADLETTER LOGO(S)
+%%==============================================================================
+
+%\addheadlogo{L}{2.0cm}{coppetec50}
+\addheadlogo{R}{2.0cm}{coppetec50}
+
+%\addfootlogo{L}{2.0cm}{coppetec50}
+%\addfootlogo{R}{2.0cm}{coppetec50}
+
+
+%%==============================================================================
+%% FRONT PAGE CONTENTS
+%%==============================================================================
+
+\thispagestyle{empty}
+
+%% Disable page anchor to avoid multiple page number definition warnings.
+\hypersetup{pageanchor=false}
+
+%% Restart page counter.
+\setpagecounter{0}
+
+\begin{center}
+  {\LARGE \ROSA}
+
+  {\LARGE \textit{Stoplog Inspection}}
+  \vfill
+
+  %% Logo section. -----------------------------------------------------------
+
+  {\LARGE Colaboração entre}
+  \vspace{0.25cm}
+
+  \addpicture{0.60}{LR}{
+    \addlogo{1.25cm}{dfki} & \addlogo{1.25cm}{gscar} \rowend
+    \addlogo{1.25cm}{coppe}
+
+  }
+  \vfill
+
+   %% Title section. ----------------------------------------------------------
+
+  {\LARGE Relatório Geral}
+  \vspace{0.25cm}
+
+
+  %% Date section. -----------------------------------------------------------
+
+  {\LARGE Dez/2013}
+\end{center}
+
+\newpage
+
+
+%%==============================================================================
+%% AUTHORS AND VERSION PAGE
+%%==============================================================================
+
+\thispagestyle{empty}
+
+%% Restart page counter.
+\setpagecounter{0}
+
+\begin{center}
+  %% Version section. --------------------------------------------------------
+
+  {\LARGE Documento Versão 1}
+  \vspace{0.25cm}
+
+  %% Project section. --------------------------------------------------------
+
+   {\Large \ROSA}
+  \vfill
+
+  {\Large Interessado GSCAR/DFKI}
+  \vfill
+
+  %% Authors section. --------------------------------------------------------
+
+  {\LARGE Autor(es)}
+  \vspace{0.50cm}
+
+
+  
+
+  {\large \textbf{Ramon Romankevicius} \\ \email{ramon@coep.ufrj.br}}
+  \vspace{0.25cm}
+  {\large \textbf{Alessandro Jacoud} \\ \email{jacoud@poli.ufrj.br}}
+  \vspace{0.25cm}
+  {\large \textbf{Patrick Paranhos} \\ \email{patrick.merz_paranhos@dfki.de}}
+  \vfill
+  
+  {\large \textbf{Julia Campana} \\ \email{juliarcampana@gmail.com}}
+  \vspace{0.25cm}
+  
+  {\large \textbf{Renan Freitas} \\ \email{renan028@gmail.com}}
+  \vspace{0.25cm}
+
+  {\large \textbf{Eduardo Elael} \\ \email{elael2@gmail.com}}
+  \vspace{0.25cm}
+
+  {\large \textbf{Gabriel Alcantara} \\ \email{alcantara@poli.ufrj.br}}
+  \vspace{0.25cm}
+  
+  {\large \textbf{André Figueiró} \\ \email{andrefig@poli.ufrj.br}}
+  \vspace{0.25cm}
+
+
+  \addtabular{1.0}{c|L|l|l}{
+    \rowhdr \cellcap{Versão}    &
+            \cellcap{Anotação}  &
+            \cellcap{Data}      &
+            \cellcap{Autor(es)} \rowend
+    %
+    \rowodd 1 & primeira versão do documento & dez 2013 \rowend
+    \roweve   &  &  &  \rowend
+    \rowodd   &  &  &  \rowend
+    \roweve   &  &  &
+  }
+\end{center}
+
+\newpage
+
+%% Enable page anchor again.
+\hypersetup{pageanchor=true}
+
