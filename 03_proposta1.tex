@@ -17,17 +17,17 @@
 \section[Proposta 1 – Placa com Microcontrolador e Gateway Ethernet]{Proposta 1
 – Placa com Microcontrolador e \\Gateway Ethernet}
 
-\subsection{Arquitetura da Eletrônica Proposta 1}
+\subsection{Arquitetura da Eletrônica Proposta 1 - versão 1}
 A eletrônia é composta pelos seguintes dispositivos:
 \begin{itemize}
   \item Dois Encoders da IFM: 24V e interface CAN. Datasheet em Anexo 1.
   \item Um sonar Super SeaKing da Tritech: 24V e interface RS232. Data\-sheet em
   Anexo 1
-  \item Um Sistema Pan \& Tilt da Kongsberg: 24V e interface RS485. Data\-sheet
+  \item Um Sistema Pan \& Tilt da Kongsberg: 24V e interface RS232. Data\-sheet
   em Anexo 1.
   \item Dois sensores Indutivos da Pepperl-Fuchs: 24V e saída ana\-lógico.
   Data\-sheet em Anexo 1.
-  \item Um sensor de inclinação da Pepperl-Fuchs: 24V e saída analógica.
+  \item Um sensor de inclinação da IFM: 24V e saída analógica.
   Data\-sheet em Anexo 1.
   \item Um sensor de pressão da Velki: 24V e saída RS485. Datasheet em Anexo 1.
 \end{itemize}
@@ -35,7 +35,7 @@ A eletrônia é composta pelos seguintes dispositivos:
 A placa com microcontrolador deve ter disponível todas as alimentações elétricas
 e interfaces de comunicação descritas acima, além de saída Ethernet para
 comunicação com a base. Na figura~\ref{placa}, pode ser observado o modelo 3D da
-placa. Na figura~\ref{alimentacao_placa} e figura~\ref{com_placa}, são
+placa. Na figura~\ref{com_placa} e figura~\ref{alimentacao_placa}, são
 representados os diagramas de interfaces de comunicação e alimentação elétrica,
 respectivamente, do sistema. A seguir, será feita uma breve explicação dos
 principais componentes da placa.
@@ -50,21 +50,21 @@ MAX485, que realizam a conversão RS232 ou RS485 para UART, respectivamente.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\columnwidth]{figs/eletronica/1.png}
+\includegraphics[width=1\columnwidth]{figs/eletronica/placav1.png}
 \caption{Placa 3D}
 \label{placa}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\columnwidth]{figs/eletronica/2.png}
+\includegraphics[width=1\columnwidth]{figs/eletronica/alimv1.png}
 \caption{Diagrama de Alimentações}
 \label{alimentacao_placa}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\columnwidth]{figs/eletronica/3.png}
+\includegraphics[width=1\columnwidth]{figs/eletronica/comv1.png}
 \caption{Diagrama de Comunicação}
 \label{com_placa}
 \end{figure}
@@ -76,7 +76,7 @@ interface, como o protocolo CANOpen.
 A eletrônica deverá ser acoplada ao Lifting Beam, logo deverá ser construída uma
 estrutura mecânica à prova d’água para esta solução.
 
-\subsection{Arquitetura de Software Proposta 1}
+\subsection{Arquitetura de Software Proposta 1 - versão 1}
 O sistema se divide em três grandes blocos que serão encapsulados separadamente
 e se comunicarão entre si, figura \ref{fig:FL:1}. A primeira parte consiste no
 sistema de eletrônica embarcada composta pelos sensores e um equipamento de
@@ -138,3 +138,76 @@ processados e recebendo os comandos de controle.  A interface homem máquina
 consiste em um aplicativo cuja finalidade é realizar a interface do sistema com
 o usuário, possibilitando uma correta e fácil visualização de todas as
 informações pertinentes do sistema e suas operações.
+
+\subsection{Arquitetura da Eletrônica Proposta 1 - versão 2}
+Após a primeira viagem técnica para Jirau em Maio/2014, houve algumas alterações
+na arquitetura da eletrônica. 
+A nova arquitetura da eletrônia é composta pelos seguintes dispositivos:
+\begin{itemize}
+  \item Dois Encoders da IFM: 24V e interface CAN. Datasheet em Anexo 1.
+  \item Um sonar Super SeaKing da Tritech: 24V e interface RS232. Data\-sheet em
+  Anexo 1
+  \item Um Sistema Pan \& Tilt da Kongsberg: 24V e interface RS232. Data\-sheet
+  em Anexo 1.
+  \item Três sensores Indutivos da Pepperl-Fuchs: 24V e saída ana\-lógico.
+  Data\-sheet em Anexo 1.
+  \item Quatro sensor de inclinação da Pepperl-Fuchs: 24V e saída analógica.
+  Data\-sheet em Anexo 1.
+  \item Um sensor de pressão da Velki: 24V e saída RS485. Datasheet em Anexo 1.
+\end{itemize}
+Os sensores de inclinação acrescentados podem substituir os encoders, em caso de
+restrição de acoplamento mecânico na viga pescadora. 
+Os sensores de inclinação serão acoplados da mesma
+maneira que os sensores indutivos
+
+A placa com microcontrolador é semelhante à desenvolvida na versão 1,
+acrescida de quatro conectores para os sensores de inclinação e mais um
+conector para o sensor indutivo extra. 
+
+O microcontrolador AT90CAN64 será responsável pelo monitoramento e controle da
+alimentação elétrica de todos os dispositivos, além de interpretar os dados dos
+quatro sensores de inclinação e se comunicar com o gateway Ethernet. 
+
+Os sensores de inclinação adicionais podem substituir os encoders, em caso de
+restrição de acoplamento mecânico na viga pescadora. Eles têm saída
+analógica, que é interpretada pelo microcontrolador. Duas placas foram
+desenvolvidas:~\ref{placav21} e ~\ref{placav22}, onde a segunda apresenta
+amplificadores para condicionamento dos sinais analógicos provenientes dos
+sensores de inclinação a fim de reduzir ruídos. Na
+figura~\ref{com_placav2} e figura~\ref{alimentacao_placav2}, são
+representados os diagramas de interfaces de comunicação e alimentação elétrica,
+respectivamente, do sistema. A seguir, será feita uma breve explicação dos principais componentes da placa.
+
+O gateway Ethernet SR01E12 possui interfaces UART e analógicas. Des\-sa forma,
+diversos dispositivos podem se conectar ao gateway atra\-vés de chips MAX232 ou
+MAX485, que realizam a conversão RS232 ou RS485 para UART, respectivamente.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\columnwidth]{figs/eletronica/placav21.png}
+\caption{Placa 3D - versão com sensores de inclinação sem condicionamento de
+sinal}
+\label{placav21}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\columnwidth]{figs/eletronica/placav22.png}
+\caption{Placa 3D - versão com sensores de inclinação com condicionamento de
+sinal}
+\label{placav22}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\columnwidth]{figs/eletronica/alimentacao_placav2.pdf}
+\caption{Diagrama de Alimentações}
+\label{alimentacao_placav2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\columnwidth]{figs/eletronica/com_placav2.pdf}
+\caption{Diagrama de Comunicação - versão 2}
+\label{com_placav2}
+\end{figure}
