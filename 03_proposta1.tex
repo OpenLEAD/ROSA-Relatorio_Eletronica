@@ -73,8 +73,19 @@ A placa com microcontrolador é uma solução de baixo custo, porém exige maior
 tempo de execução. Há a necessidade de fabricação, montagem, testes elétricos e
 lógicos da placa e programação de microcontrolador para gerenciamento de cada
 interface, como o protocolo CANOpen.
+
 A eletrônica deverá ser acoplada ao Lifting Beam, logo deverá ser construída uma
-estrutura mecânica à prova d’água para esta solução.
+estrutura mecânica à prova d’água para esta solução. Conectores e emendas
+deverão ser à prova d'água. Os conectores serão do tipo SEA CON WET-CON por já
+terem sido estudados e utilizados em outros projetos do laboratório LEAD,
+ver Datasheet em Anexo 1 - Conectores. Nesta versão, serão utilizados:
+\begin{itemize}
+  \item Dois conectores de 3 pinos (sensores indutivos);
+  \item Um conector de 7 pinos (Pan Tilt);
+  \item Três conectores de 5 pinos (encoders e sonar);
+\end{itemize}
+O sensor de inclinação e pressão estão dentro da eletrônica embarcada e,
+portanto, não necessitam de conectores à prova d'água.
 
 \subsection{Arquitetura de Software Proposta 1 - versão 1}
 O sistema se divide em três grandes blocos que serão encapsulados separadamente
@@ -170,17 +181,18 @@ quatro sensores de inclinação e se comunicar com o gateway Ethernet.
 
 Os sensores de inclinação adicionais podem substituir os encoders, em caso de
 restrição de acoplamento mecânico na viga pescadora. Eles têm saída
-analógica, que é interpretada pelo microcontrolador. Duas placas foram
-desenvolvidas:~\ref{placav21} e ~\ref{placav22}, onde a segunda apresenta
-amplificadores para condicionamento dos sinais analógicos provenientes dos
-sensores de inclinação a fim de reduzir ruídos. Na
-figura~\ref{com_placav2} e figura~\ref{alimentacao_placav2}, são
-representados os diagramas de interfaces de comunicação e alimentação elétrica,
-respectivamente, do sistema. A seguir, será feita uma breve explicação dos principais componentes da placa.
+analógica, as quais são interpretadas pelo microcontrolador pelos canais
+ADC (conversor analógico-digital).
 
-O gateway Ethernet SR01E12 possui interfaces UART e analógicas. Des\-sa forma,
-diversos dispositivos podem se conectar ao gateway atra\-vés de chips MAX232 ou
-MAX485, que realizam a conversão RS232 ou RS485 para UART, respectivamente.
+O sensor indutivo adicional será utilizado para detectar a posição da chave de
+operação, sendo possível alertar o operador quando a operação está na fase de
+remoção ou inserção de stoplogs.
+
+Duas placas foram desenvolvidas:~\ref{placav21} e ~\ref{placav22}, onde a segunda apresenta
+amplificadores para condicionamento dos sinais analógicos provenientes dos
+sensores de inclinação a fim de reduzir ruídos. Na figura~\ref{com_placav2} e
+figura~\ref{alimentacao_placav2}, são representados os diagramas de interfaces de comunicação e alimentação elétrica,
+respectivamente, do sistema.
 
 \begin{figure}[H]
 \centering
@@ -211,3 +223,13 @@ sinal}
 \caption{Diagrama de Comunicação - versão 2}
 \label{com_placav2}
 \end{figure}
+
+A eletrônica desta versão 2 também será acoplada ao Lifting Beam. Os
+conectores utilizados nesta versão serão:
+\begin{itemize}
+  \item Seis conectores de 3 pinos (sensores indutivos e inclinômetros);
+  \item Um conector de 7 pinos (Pan Tilt);
+  \item Um conector de 5 pinos (sonar);
+\end{itemize}
+Um sensor de inclinação e o sensor de pressão estão dentro da eletrônica
+embarcada e, portanto, não necessitam de conectores à prova d'água.
