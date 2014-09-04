@@ -87,82 +87,18 @@ ver Datasheet em Anexo 1 - Conectores. Nesta versão, serão utilizados:
 O sensor de inclinação e pressão estão dentro da eletrônica embarcada e,
 portanto, não necessitam de conectores à prova d'água.
 
-\subsection{Arquitetura de Software Proposta 1 - versão 1}
-O sistema se divide em três grandes blocos que serão encapsulados separadamente
-e se comunicarão entre si, figura \ref{fig:FL:1}. A primeira parte consiste no
-sistema de eletrônica embarcada composta pelos sensores e um equipamento de
-roteamento dos dados (raias \emph{Sensores}, \emph{Conversores UART} e
-\emph{Interface de Telemetria} da figura), a segunda parte consiste no sistema
-de gerenciamento e processamento de dados em terra (raia \emph{Computação em
-Terra}) e, finalmente, o último bloco consiste na camada de interface
-homem-máquina , que consiste em um Tablet com sistema operacional Android (raia
-\emph{Interface com o usuário}).
-
-\afterpage{
-\begin{landscape}
-\begin{figure}
-\centering
-\includegraphics[width=1\linewidth,keepaspectratio]{figs/software/LogicoFisico/EsqLogicoFisico1n.pdf}
-\caption{Relação entre os componentes físicos e as divisões lógicas da
-proposta 1.}
-\label{fig:FL:1}
-\end{figure}
-\end{landscape}
-}
-
-Cada sensor deverá possuir um driver para a interface entre o equipamento físico
-e camada de software, isto é, os encoders, inclinômetro, os sensores indutivos e
-o sensor de pressão possuirão drivers dedicados para a leitura de dados, feita
-através de uma conexão Ethernet para a placa que interconecta os sensores. O
-sonar e o módulo PanTilt também possuirão drivers próprios para a aquisição de
-dados e controle.
-
-Nesta proposta, após a aquisição de dados, a placa embarcada realizará o
-roteamento e envio de todos os dados para o computador em terra por meio do
-driver do módulo Ethernet.  Os dados transmitidos pela eletrônica embarcada são
-separados em dois grandes grupos: referentes à Monitoração e os referentes à
-Visualização Sonar.
-
-No computador localizado em terra, figura \ref{fig:ES:1}, o componente de
-software responsável pela monitoração irá processar e conformar os dados
-provenientes dos sensores utilizados para o monitoramento das operações de
-inserção e remoção (encoders, inclinômetro, sensores indutivos e sensor de
-pressão). Os dados provenientes do sonar devem ser integrados com a posição do
-elemento PanTilt, no componente Sonar-PanTilt, para que sejam consistentes e
-completos.  O módulo de Reconstrução 3D é responsável, então, por traduzir os
-dados processados pelo componente anterior em uma visualização inteligível para
-o ser humano.  Um componente de segurança também é adicionado para monitorar a
-correta utilização do sonar (apenas embaixo d’água), conferindo uma maior
-robustez ao sistema.
-
-\begin{figure}[H] 
-\centering
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figs/software/EstrutSoft/prop1_soft_2.pdf}
-\caption{Interconexões entre os componentes de software da proposta 1.}
-\label{fig:ES:1}
-\end{figure}
-
-Ambos os componentes de processamento e conformação de dados, Monitoração e
-Visualização Sonar, irão se comunicar com o Tablet com sistema operacional
-Android por meio do componente Transmissão de dados – Tablet, enviando os dados
-processados e recebendo os comandos de controle.  A interface homem máquina
-consiste em um aplicativo cuja finalidade é realizar a interface do sistema com
-o usuário, possibilitando uma correta e fácil visualização de todas as
-informações pertinentes do sistema e suas operações.
-
 \subsection{Arquitetura da Eletrônica Proposta 1 - versão 2}
 Após a primeira viagem técnica para Jirau em Maio/2014, houve algumas alterações
-na arquitetura da eletrônica. 
-A nova arquitetura da eletrônia é composta pelos seguintes dispositivos:
+na arquitetura da eletrônica. A nova arquitetura da eletrônia é composta pelos
+seguintes dispositivos:
 \begin{itemize}
-  \item Dois Encoders da IFM: 24V e interface CAN. Datasheet em Anexo 1.
   \item Um sonar Super SeaKing da Tritech: 24V e interface RS232. Data\-sheet em
   Anexo 1
   \item Um Sistema Pan \& Tilt da Kongsberg: 24V e interface RS232. Data\-sheet
   em Anexo 1.
   \item Três sensores Indutivos da Pepperl-Fuchs: 24V e saída ana\-lógico.
   Data\-sheet em Anexo 1.
-  \item Quatro sensor de inclinação da Pepperl-Fuchs: 24V e saída analógica.
+  \item Quatro sensor de inclinação da IFM: 24V e saída analógica.
   Data\-sheet em Anexo 1.
   \item Um sensor de pressão da Velki: 24V e saída RS485. Datasheet em Anexo 1.
 \end{itemize}
@@ -233,3 +169,115 @@ conectores utilizados nesta versão serão:
 \end{itemize}
 Um sensor de inclinação e o sensor de pressão estão dentro da eletrônica
 embarcada e, portanto, não necessitam de conectores à prova d'água.
+
+\subsection{Arquitetura da Eletrônica Proposta 1 - versão 3}
+O módulo Ethernet, na arquitetura da eletrônica das versões anteriores, tem a
+função de gerenciar quatro comunicações seriais. A transição entre as quatro
+comunicações seriais (uC, Sonar, Pan \& Tilt e Profundímetro) seria feita por
+software, o que pode resultar em perda de dados, já que apenas duas são
+ativadas simultaneamente, limitação do módulo. A solução para isso foi
+o desenvolvimento de uma nova placa eletrônica com dois módulos Ethernet e um
+switch Ethernet para integrar todos os dados.
+
+Na nova placa, a saída analógica dos inclinômetros passam pelo condicionamento
+de sinal e são analisadas diretamente por um dos módulos Ethernet. O esquemático
+da versão 3 pode ser visto na figura~\ref{esquematicov3} e o modelo 3D na
+figura 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\columnwidth]{figs/eletronica/esquematicov3.pdf}
+\caption{Esquemático da Versão 3}
+\label{esquematicov3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\columnwidth]{figs/eletronica/placav3.pdf}
+\caption{Layout 3D da placa Versão 3}
+\label{placav3}
+\end{figure}
+
+Segue lista de conectores e cabos da SEACON WET-CON para o housing da
+eletrônica:
+\begin{itemize}
+  \item BH-3-MP com cabo de 2m. Quantidade: 6;
+  \item BH-8-MP com cabo de 2m. Quantidade: 1;
+  \item BH-6-MP com cabo de 2m. Quantidade: 2;
+  \item BH-2-MP. Quantidade: 1;
+  \item BH-3-FP. Quantidade: 6;
+  \item BH-8-FP. Quantidade: 1;
+  \item BH-6-FP. Quantidade: 2;
+  \item BH-2-FP com cabo de 2m. Quantidade: 1;
+  \item DC-3-FS. Quantidade: 6
+\item DC-8-FS. Quantidade: 1	
+\item DC-6-FS. Quantidade: 2
+\item DC-2-FS. Quantidade: 1
+\item DC-3-MP. Quantidade: 6
+\item DC-8-MP. Quantidade: 1
+\item DC-6-MP. Quantidade: 2
+\item DC-2-MP. Quantidade: 1   
+\end{itemize}
+
+\subsection{Arquitetura de Software Proposta 1 - versão 1}
+O sistema se divide em três grandes blocos que serão encapsulados separadamente
+e se comunicarão entre si, figura \ref{fig:FL:1}. A primeira parte consiste no
+sistema de eletrônica embarcada composta pelos sensores e um equipamento de
+roteamento dos dados (raias \emph{Sensores}, \emph{Conversores UART} e
+\emph{Interface de Telemetria} da figura), a segunda parte consiste no sistema
+de gerenciamento e processamento de dados em terra (raia \emph{Computação em
+Terra}) e, finalmente, o último bloco consiste na camada de interface
+homem-máquina , que consiste em um Tablet com sistema operacional Android (raia
+\emph{Interface com o usuário}).
+
+\afterpage{
+\begin{landscape}
+\begin{figure}
+\centering
+\includegraphics[width=1\linewidth,keepaspectratio]{figs/software/LogicoFisico/EsqLogicoFisico1n.pdf}
+\caption{Relação entre os componentes físicos e as divisões lógicas da
+proposta 1.}
+\label{fig:FL:1}
+\end{figure}
+\end{landscape}
+}
+
+Cada sensor deverá possuir um driver para a interface entre o equipamento físico
+e camada de software, isto é, os encoders, inclinômetro, os sensores indutivos e
+o sensor de pressão possuirão drivers dedicados para a leitura de dados, feita
+através de uma conexão Ethernet para a placa que interconecta os sensores. O
+sonar e o módulo PanTilt também possuirão drivers próprios para a aquisição de
+dados e controle.
+
+Nesta proposta, após a aquisição de dados, a placa embarcada realizará o
+roteamento e envio de todos os dados para o computador em terra por meio do
+driver do módulo Ethernet.  Os dados transmitidos pela eletrônica embarcada são
+separados em dois grandes grupos: referentes à Monitoração e os referentes à
+Visualização Sonar.
+
+No computador localizado em terra, figura \ref{fig:ES:1}, o componente de
+software responsável pela monitoração irá processar e conformar os dados
+provenientes dos sensores utilizados para o monitoramento das operações de
+inserção e remoção (encoders, inclinômetro, sensores indutivos e sensor de
+pressão). Os dados provenientes do sonar devem ser integrados com a posição do
+elemento PanTilt, no componente Sonar-PanTilt, para que sejam consistentes e
+completos.  O módulo de Reconstrução 3D é responsável, então, por traduzir os
+dados processados pelo componente anterior em uma visualização inteligível para
+o ser humano.  Um componente de segurança também é adicionado para monitorar a
+correta utilização do sonar (apenas embaixo d’água), conferindo uma maior
+robustez ao sistema.
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figs/software/EstrutSoft/prop1_soft_2.pdf}
+\caption{Interconexões entre os componentes de software da proposta 1.}
+\label{fig:ES:1}
+\end{figure}
+
+Ambos os componentes de processamento e conformação de dados, Monitoração e
+Visualização Sonar, irão se comunicar com o Tablet com sistema operacional
+Android por meio do componente Transmissão de dados – Tablet, enviando os dados
+processados e recebendo os comandos de controle.  A interface homem máquina
+consiste em um aplicativo cuja finalidade é realizar a interface do sistema com
+o usuário, possibilitando uma correta e fácil visualização de todas as
+informações pertinentes do sistema e suas operações.
