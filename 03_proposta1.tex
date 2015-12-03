@@ -20,7 +20,9 @@
 \subsection{Arquitetura da Eletrônica Proposta 1 - versão 1}
 A eletrônia é composta pelos seguintes dispositivos:
 \begin{itemize}
-  \item Dois Encoders da IFM: 24V e interface CAN. Datasheet em Anexo 1.
+  \item Dois Encoders da IFM: 24V e interface \textit{Controller Area Network}
+  (CAN).
+  Datasheet em Anexo 1.
   \item Um sonar Super SeaKing da Tritech: 24V e interface RS232. Data\-sheet em
   Anexo 1
   \item Um Sistema Pan \& Tilt da Kongsberg: 24V e interface RS232. Data\-sheet
@@ -44,9 +46,9 @@ O microcontrolador AT90CAN64 será responsável pelo monitoramento e controle da
 alimentação elétrica de todos os dispositivos, além de ser o respon\-sável pela
 comunicação CAN com o Encoder.
 
-O gateway Ethernet SR01E12 possui interfaces UART e analógicas. Des\-sa forma,
-diversos dispositivos podem se conectar ao gateway atra\-vés de chips MAX232 ou
-MAX485, que realizam a conversão RS232 ou RS485 para UART, respectivamente.
+A ponte de ligação (gateway) Ethernet SR01E12 possui interfaces de comunicação
+UART e analógicas. Des\-sa forma, diversos dispositivos podem se conectar ao
+gateway atra\-vés de chips MAX232 ou MAX485, que realizam a conversão RS232 ou RS485 para UART, respectivamente.
 
 \begin{figure}[H]
 \centering
@@ -72,13 +74,16 @@ MAX485, que realizam a conversão RS232 ou RS485 para UART, respectivamente.
 A placa com microcontrolador é uma solução de baixo custo, porém exige maior
 tempo de execução. Há a necessidade de fabricação, montagem, testes elétricos e
 lógicos da placa e programação de microcontrolador para gerenciamento de cada
-interface, como o protocolo CANOpen.
+interface, como o protocolo CANOpen (protocolo de comunicação para camada de
+usuário no modelo ISO/OSI com alto grau de flexibilidade para configuração, e
+utiliza o CAN como camada de transporte).
 
-A eletrônica deverá ser acoplada ao Lifting Beam, logo deverá ser construída uma
-estrutura mecânica à prova d’água para esta solução. Conectores e emendas
+A eletrônica deverá ser acoplada à viga pescadora, logo deverá ser construída
+uma estrutura mecânica à prova d’água para esta solução. Conectores e emendas
 deverão ser à prova d'água. Os conectores serão do tipo SEA CON WET-CON por já
-terem sido estudados e utilizados em outros projetos do laboratório LEAD,
-ver Datasheet em Anexo 1 - Conectores. Nesta versão, serão utilizados:
+terem sido estudados e utilizados em outros projetos do Laboratório de Controle
+e Automação, Engenharia de Aplicação e Desenvolvimento (LEAD), ver Datasheet em
+Anexo 1 - Conectores. Nesta versão, serão utilizados:
 \begin{itemize}
   \item Dois conectores de 3 pinos (sensores indutivos);
   \item Um conector de 7 pinos (Pan Tilt);
@@ -199,7 +204,7 @@ figura
 \end{figure}
 
 Segue lista de conectores e cabos da SEACON WET-CON para o housing da
-eletrônica:
+eletrônica (os conectores são representados no manual do usuário):
 \begin{itemize}
   \item BH-3-MP com cabo de 2m. Quantidade: 6;
   \item BH-8-MP com cabo de 2m. Quantidade: 1;
