@@ -188,7 +188,7 @@ switch Ethernet para integrar todos os dados.
 Na nova placa, a saída analógica dos inclinômetros passam pelo condicionamento
 de sinal e são analisadas diretamente por um dos módulos Ethernet. O esquemático
 da versão 3 pode ser visto na figura~\ref{esquematicov3} e o modelo 3D na
-figura 
+figura~\ref{placav3}.
 
 \begin{figure}[H]
 \centering
@@ -199,7 +199,7 @@ figura
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1\columnwidth]{figs/eletronica/placav3.pdf}
+\includegraphics[width=1\columnwidth]{figs/eletronica/placav3}
 \caption{Layout 3D da placa Versão 3}
 \label{placav3}
 \end{figure}
@@ -227,17 +227,16 @@ eletrônica (os conectores são representados no manual do usuário):
 
 \subsection{Arquitetura de Software Proposta 1 - versão 1}
 O sistema se divide em três grandes blocos que serão encapsulados separadamente
-e se comunicarão entre si, figura \ref{fig:FL:1}. A primeira parte consiste no
+e se comunicarão entre si. A primeira parte consiste no
 sistema de eletrônica embarcada composta pelos sensores e um equipamento de
-roteamento dos dados (raias \emph{Sensores}, \emph{Conversores UART} e
-\emph{Interface de Telemetria} da figura), a segunda parte consiste no sistema
-de gerenciamento e processamento de dados em terra (raia \emph{Computação em
+roteamento dos dados (Na figura \ref{fig:FL:1} ela está representada segundo as
+raias: \emph{Sensores}, \emph{Conversores UART} e \emph{Interface de Telemetria}
+), a segunda parte consiste no sistema de gerenciamento e processamento de dados em terra (raia \emph{Computação em
 Terra}) e, finalmente, o último bloco consiste na camada de interface
 homem-máquina , que consiste em um Tablet com sistema operacional Android (raia
 \emph{Interface com o usuário}).
 
 \afterpage{
-\begin{landscape}
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth,keepaspectratio]{figs/software/LogicoFisico/EsqLogicoFisico1n.pdf}
@@ -245,15 +244,14 @@ homem-máquina , que consiste em um Tablet com sistema operacional Android (raia
 proposta 1.}
 \label{fig:FL:1}
 \end{figure}
-\end{landscape}
 }
 
 Cada sensor deverá possuir um driver para a interface entre o equipamento físico
 e camada de software, isto é, os encoders, inclinômetro, os sensores indutivos e
 o sensor de pressão possuirão drivers dedicados para a leitura de dados, feita
 através de uma conexão Ethernet para a placa que interconecta os sensores. O
-sonar e o módulo PanTilt também possuirão drivers próprios para a aquisição de
-dados e controle.
+sonar e o módulo Pan \& Tilt também possuirão drivers próprios para a aquisição
+de dados e controle.
 
 Nesta proposta, após a aquisição de dados, a placa embarcada realizará o
 roteamento e envio de todos os dados para o computador em terra por meio do
